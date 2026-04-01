@@ -1,0 +1,39 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}Add Notice | SRMS{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">
+        <i class="fas fa-bullhorn text-primary"></i> Add Notice
+    </h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" class="card p-4 shadow-sm">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="title" class="form-label"><strong>Notice Title</strong></label>
+            <input type="text" name="title" id="title" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="details" class="form-label"><strong>Notice Details</strong></label>
+            <textarea name="details" id="details" rows="5" class="form-control" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-check-circle me-1"></i> Submit
+        </button>
+    </form>
+</div>
+{% endblock %}

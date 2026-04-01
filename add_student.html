@@ -1,0 +1,68 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}Add Student | SRMS{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h2 class="mb-4"><i class="fas fa-user-plus text-primary"></i> Add Student</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="card shadow p-4">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" name="fullanme" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Roll ID</label>
+                <input type="text" name="rollid" class="form-control" maxlength="5" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email ID</label>
+                <input type="email" name="emailid" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Gender</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" value="Male" checked>
+                    <label class="form-check-label">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" value="Female">
+                    <label class="form-check-label">Female</label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Class</label>
+                <select name="class" class="form-select" required>
+                    <option value="">Select Class</option>
+                    {% for cls in classes %}
+                        <option value="{{ cls.id }}">{{ cls.class_name }} - Section {{ cls.section }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Date of Birth</label>
+                <input type="date" name="dob" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Student</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}Edit Class | SRMS{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4"><i class="fas fa-edit text-info"></i> Edit Class</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" class="bg-white p-4 shadow rounded">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="classname" class="form-label">Class Name</label>
+            <input type="text" class="form-control" id="classname" name="classname" value="{{ class_obj.class_name }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="classnamenumeric" class="form-label">Class Numeric</label>
+            <input type="number" class="form-control" id="classnamenumeric" name="classnamenumeric" value="{{ class_obj.class_numeric }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="section" class="form-label">Section</label>
+            <input type="text" class="form-control" id="section" name="section" value="{{ class_obj.section }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save me-1"></i> Update Class
+        </button>
+        <a href="{% url 'manage_classes' %}" class="btn btn-secondary ms-2">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+    </form>
+</div>
+{% endblock %}

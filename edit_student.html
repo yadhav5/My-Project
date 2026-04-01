@@ -1,0 +1,63 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}Edit Student | SRMS{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Edit Student Info</h2>
+
+    {% if msg %}
+    <div class="alert alert-success">{{ msg }}</div>
+    {% endif %}
+
+    <form method="POST" class="card p-4 shadow-sm">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="fullanme" class="form-control" value="{{ student.name }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Roll ID</label>
+            <input type="text" name="rollid" class="form-control" value="{{ student.roll_id }}" maxlength="5" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" name="emailid" class="form-control" value="{{ student.email }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Gender</label><br>
+            <input type="radio" name="gender" value="Male" {% if student.gender == "Male" %}checked{% endif %}> Male
+            <input type="radio" name="gender" value="Female" {% if student.gender == "Female" %}checked{% endif %}> Female
+            
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">DOB</label>
+            <input type="date" name="dob" class="form-control" value="{{ student.dob }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Class</label>
+            <input type="text" class="form-control" value="{{ student.student_class.class_name }} ({{ student.student_class.section }})" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Reg Date</label>
+            <input type="text" class="form-control" value="{{ student.reg_date }}" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Status</label><br>
+            <input type="radio" name="status" value="1" {% if student.status == 1 %}checked{% endif %}> Active
+            <input type="radio" name="status" value="0" {% if student.status == 0 %}checked{% endif %}> Blocked
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+{% endblock %}

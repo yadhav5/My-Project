@@ -1,0 +1,54 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}Manage Notices | SRMS{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Manage Notices</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="card p-4 shadow-sm">
+        <table id="noticeTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Notice Title</th>
+                    <th>Notice Details</th>
+                    <th>Posting Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for notice in notices %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ notice.title }}</td>
+                    <td>{{ notice.details }}</td>
+                    <td>{{ notice.posting_date }}</td>
+                    <td>
+                        <a href="{% url 'delete_notice' notice.id %}" onclick="return confirm('Do you really want to delete this notice?');" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<script>
+    $(document).ready(function () {
+        $('#noticeTable').DataTable();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% load static %}
+<nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse pt-3">
+    <div class="position-sticky">
+        <div class="text-white px-3 mb-3">
+            <div class="text-center">
+                <img src="{% static 'images/tchr.avif' %}" class="rounded-circle mb-2" alt="Admin" width="90" height="90">
+                <h6 class="mb-0">Admin</h6>
+                <small>Administrator</small>
+            </div>
+        </div>
+        <ul class="nav flex-column text-white">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin_dashboard' %}">
+                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                </a>
+            </li>
+
+            
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#classesMenu" role="button">
+                    <i class="fas fa-chalkboard me-2"></i> Classes <i class="fas fa-chevron-down float-end"></i>
+                </a>
+                <div class="collapse" id="classesMenu">
+                    <ul class="nav flex-column ms-3">
+                        <li><a class="nav-link" href="{% url 'create_class' %}"><i class="fas fa-plus"></i> Create Class</a></li>
+                        <li><a class="nav-link" href="{% url 'manage_classes' %}"><i class="fas fa-table"></i> Manage Classes</a></li>
+                    </ul>
+                </div>
+            </li>
+
+        
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#subjectsMenu" role="button">
+                    <i class="fas fa-book me-2"></i> Subjects <i class="fas fa-chevron-down float-end"></i>
+                </a>
+                <div class="collapse" id="subjectsMenu">
+                    <ul class="nav flex-column ms-3">
+                        <li><a class="nav-link" href="{% url 'create_subject' %}"><i class="fas fa-plus"></i> Create Subject</a></li>
+                        <li><a class="nav-link" href="{% url 'manage_subjects' %}"><i class="fas fa-list"></i> Manage Subjects</a></li>
+                        <li><a class="nav-link" href="{% url 'add_subject_combination' %}"><i class="fas fa-layer-group"></i> Add Subject Combination</a></li>
+                        <li><a class="nav-link" href="{% url 'manage_subject_combination' %}"><i class="fas fa-layer-group"></i> Manage Subject Combination</a></li>
+                    </ul>
+                </div>
+            </li>
+
+        
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#studentsMenu" role="button">
+                    <i class="fas fa-user-graduate me-2"></i> Students <i class="fas fa-chevron-down float-end"></i>
+                </a>
+                <div class="collapse" id="studentsMenu">
+                    <ul class="nav flex-column ms-3">
+                        <li><a class="nav-link" href="{% url 'add_student' %}"><i class="fas fa-plus"></i> Add Students</a></li>
+                        <li><a class="nav-link" href="{% url 'manage_students' %}"><i class="fas fa-list"></i> Manage Students</a></li>
+                    </ul>
+                </div>
+            </li>
+
+        
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#resultsMenu" role="button">
+                    <i class="fas fa-clipboard-list me-2"></i> Results <i class="fas fa-chevron-down float-end"></i>
+                </a>
+                <div class="collapse" id="resultsMenu">
+                    <ul class="nav flex-column ms-3">
+                        <li><a class="nav-link" href="{% url 'add_result' %}"><i class="fas fa-plus"></i> Add Result</a></li>
+                        <li><a class="nav-link" href="{% url 'manage_result' %}"><i class="fas fa-list"></i> Manage Results</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#noticesMenu" role="button">
+                    <i class="fas fa-bullhorn me-2"></i> Notices <i class="fas fa-chevron-down float-end"></i>
+                </a>
+                <div class="collapse" id="noticesMenu">
+                    <ul class="nav flex-column ms-3">
+                        <li><a class="nav-link" href="{% url 'add_notice' %}"><i class="fas fa-plus"></i> Add Notice</a></li>
+                        <li><a class="nav-link" href="{% url 'manage_notice' %}"><i class="fas fa-list"></i> Manage Notices</a></li>
+                    </ul>
+                </div>
+            </li>
+
+    
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin_change_password' %}"><i class="fas fa-key me-2"></i> Change Password</a>
+            </li>
+        </ul>
+    </div>
+</nav>
